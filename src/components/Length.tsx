@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { type ReactElement } from "react";
+import { UseLengthContext } from "../hooks/useLength";
+import type { LengthType } from "../context/LengthContext";
 
-function Length() {
-  const [length, setLength] = useState<string>("6");
-  const minLength: string = "4";
-  const maxLength: string = "20";
+function Length(): ReactElement | ReactElement[] {
+  const { length, setLength } = UseLengthContext();
+  const minLength: LengthType = 4;
+  const maxLength: LengthType = 20;
   
   const updateFilling = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setLength(e.target.value);
-    const percent = (Number(value) - Number(minLength)) / (Number(maxLength) - Number(minLength)) * 100;
+    const value: LengthType = Number(e.target.value);
+    setLength(value);
+    const percent = (value - minLength) / (maxLength - minLength) * 100 - 0.05;
     e.target.style.setProperty("--fill", `${percent}%`);
   }
 
@@ -27,7 +29,10 @@ function Length() {
         min={minLength}
         max={maxLength}
         onInput={updateFilling}
-        className="h-2 w-full [--fill:20%] appearance-none bg-grey-850 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-7 [&::-webkit-slider-thumb]:h-7 [&::-webkit-slider-thumb]:bg-grey-200 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:cursor-pointer active:[&::-webkit-slider-thumb]:bg-grey-850 active:[&::-webkit-slider-thumb]:border-2 active:[&::-webkit-slider-thumb]:border-green-200 [&::-webkit-slider-runnable-track]:
+        className="h-2 w-full [--fill:14%] appearance-none bg-grey-850 [&::-webkit-slider-thumb]:appearance-none 
+        [&::-webkit-slider-thumb]:w-7 [&::-webkit-slider-thumb]:h-7 [&::-webkit-slider-thumb]:bg-grey-200 [&::-webkit-slider-thumb]:rounded-full 
+        [&::-webkit-slider-thumb]:cursor-pointer active:[&::-webkit-slider-thumb]:bg-grey-850 active:[&::-webkit-slider-thumb]:border-2 
+        active:[&::-webkit-slider-thumb]:border-green-200 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-runnable-track]:
       bg-[linear-gradient(to_right,var(--color-green-200)_var(--fill),var(--color-grey-850)_var(--fill))]"
       ></input>
     </div>

@@ -1,18 +1,18 @@
-import CharacterItem, { type CharacterItemType } from "./CharacterItem";
+import { type ReactElement } from "react";
+import CharacterItem from "./CharacterItem";
+import { UseCharacterContext } from "../hooks/useCharacter";
 
-type CharacterListProps = {
-    items: CharacterItemType[]
-}
+const CharacterList = (): ReactElement => {
+  const { characters } = UseCharacterContext();
 
-const CharacterList = ({ items }: CharacterListProps) => {
-    return (
-        <ul className="list-none">
-            {items.map((listItem, i) => (
-                <li key={i} className="pb-4 last:pb-0">
-                    <CharacterItem item={listItem.item} checked={listItem.checked}/>
-                </li>
-            ))}
-        </ul>
-    )
-}
+  return (
+    <ul className="list-none">
+      {characters.map((listItem) => (
+        <li key={listItem.id} className="pb-4 last:pb-0">
+          <CharacterItem id={listItem.id} />
+        </li>
+      ))}
+    </ul>
+  );
+};
 export default CharacterList;

@@ -19,5 +19,23 @@
   --color-yellow-300: #F8CD65;
   --color-orange-400: #FB7C58;
   --color-red-500: #F64A4A;
+}
 
+@layer components {
+  .tooweak {
+    background-color: var(--color-red-500);
+    border-color: var(--color-red-500);
+  }
+  .weak {
+    background-color: var(--color-orange-400);
+    border-color: var(--color-orange-400);
+  }
+  .medium {
+    background-color: var(--color-yellow-300);
+    border-color: var(--color-yellow-300);
+  }
+  .strong {
+    background-color: var(--color-green-200);
+    border-color: var(--color-green-200);
+  }
 }

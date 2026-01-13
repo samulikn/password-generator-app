@@ -1,16 +1,47 @@
+import { useState } from "react";
+import IconCopy from "../images/icon-copy.svg?react";
+import { UsePasswordContext } from "../hooks/usePassword";
+
 function Password() {
+  const [copied, setCopied] = useState<boolean>(false);
+
+  const { password } = UsePasswordContext();
+
+  const textColor: string = !password ? "text-grey-700" : "text-white";
+  const className: string = [
+    textColor,
+    "text-2xl/8 sm:text-3xl/10 border-none",
+  ].join(" ");
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(password);
+      setCopied(true);
+
+      setTimeout(() => {
+        setCopied(false);
+      }, 5000);
+    } catch (err) {
+      console.error("Faild to copy", err);
+    }
+  };
+
   return (
     <div className="p-4 bg-grey-800 flex justify-between items-center gap-4 sm:px-8">
-      <p className="text-grey-700 text-2xl/8 sm:text-3xl/10">
-        P4$5W0rD!
-      </p>
+      <p aria-readonly className={className}>{!password ? "P4$5W0rD!" : password}</p>
+      {copied ? (
+        <span aria-hidden className="text-green-200 text-base sm:text-lg ml-auto">
+          COPIED
+        </span>
+      ) : null}
       <button>
-        <img src="./src/assets/images/icon-copy.svg" alt="copy" className="w-full" />
+        <IconCopy
+          className="w-full text-green-200 hover:text-white"
+          onClick={handleCopy}
+        />
       </button>
     </div>
   );
 }
-
-Password.propTypes = {};
 
 export default Password;
