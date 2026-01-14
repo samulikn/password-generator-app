@@ -7,4 +7,5 @@ export default defineConfig({
   plugins: [
     tailwindcss(), react(), svgr()
   ],
+  base: "/password-generator-app/",
 })
