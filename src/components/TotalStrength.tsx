@@ -13,7 +13,7 @@ const TotalStrength = () => {
     .filter((c) => c.isIncluded)
     .reduce((sum, curr) => sum + curr.chars.length, 0);
 
-  let rectangles: number = characters.length;
+  let rectangles: number = 4;
   let filledRectangles: number = 0;
   let passwordStrength: string = "";
   let bgRectangle: string = "";
@@ -27,7 +27,11 @@ const TotalStrength = () => {
 
   const entropy = calculateEntropy(length, charSize);
 
-  if (entropy < 28) {
+  if (entropy === 0) {
+    filledRectangles = 0;
+    passwordStrength = "";
+    bgRectangle = "border-grey-200";
+  } else if (entropy > 0 && entropy < 28) {
     filledRectangles = 1;
     passwordStrength = "TOO WEAK!";
     bgRectangle = "tooweak";
@@ -61,7 +65,7 @@ const TotalStrength = () => {
 
   return (
     <div>
-      <div className="p-4 sm:px-8 bg-grey-850 flex items-center">
+      <div className="p-4 sm:py-5 sm:px-8 bg-grey-850 flex items-center min-h-14 sm:min-h-18">
         <p className="text-base/5 text-grey-600 sm:text-lg">STRENGTH</p>
         <span className="ml-auto mr-4 text-lg/6 sm:text-2xl sm:pl-4">
           {passwordStrength}
@@ -81,12 +85,13 @@ const TotalStrength = () => {
         </div>
       </div>
       <button
+        type="button"
         onClick={generatePassword}
         disabled={!charSize}
-        className="w-full mt-4 sm:mt-8 bg-green-200 px-26 py-4 text-grey-800 text-base/5 inline border-2 border-green-200 hover:text-green-200 
+        className="w-full mt-3 sm:mt-8 bg-green-200 px-26 py-4 text-grey-800 text-base/5 sm:text-lg inline border-2 border-green-200 hover:text-green-200 
         hover:bg-transparent disabled:opacity-10 disabled:cursor-not-allowed disabled:hover:bg-green-200 disabled:hover:text-grey-800"
       >
-        GENERATE <ArrowRightIcon className="inline mb-1" />
+        GENERATE <ArrowRightIcon className="ml-1 sm:ml-3 inline h-3 w-3 mb-1" />
       </button>
     </div>
   );

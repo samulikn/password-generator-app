@@ -2,13 +2,13 @@ import type { ReactElement } from "react";
 
 type RectangleProps = {
   index: number;
-  filledRectangles: number;
+  filledRectangles?: number;
   bgColor: string;
 };
 
 export default function Rectangle({
   index,
-  filledRectangles,
+  filledRectangles = 0,
   bgColor,
 }: RectangleProps): ReactElement {
   const defaultClassName = "h-7 w-2.5 border-2";

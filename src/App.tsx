@@ -4,10 +4,10 @@ import Heading from "./components/Heading";
 function App() {
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center sm:gap-8">
+    <main className="flex flex-col gap-4 items-center mt-16 sm:mt-34 sm:gap-8">
       <Heading />
       <Container />
-    </div>
+    </main>
   )
 }
 

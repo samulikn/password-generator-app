@@ -15,12 +15,12 @@ function Length(): ReactElement | ReactElement[] {
   }
 
   return (
-    <div className="pb-1">
-      <div className="pb-2 flex justify-between items-center">
-        <label htmlFor="length" className="text-base/5">
+    <div className="pb-1 sm:pb-2">
+      <div className="pb-2 sm:pb-4 flex justify-between items-center">
+        <label htmlFor="length" className="text-base/5 sm:text-lg">
           Character Length
         </label>
-        <span className="text-2xl/8 text-green-200">{length}</span>
+        <span className="pr-4 sm:pr-0 text-2xl/8 text-green-200 sm:text-3xl/10">{length}</span>
       </div>
       <input
         id="length"

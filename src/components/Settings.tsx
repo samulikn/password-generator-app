@@ -6,7 +6,7 @@ import TotalStrength from "./TotalStrength";
 
 function Settings() {
   return (
-    <div className="p-4 sm:px-8 sm:py-6 bg-grey-800 text-grey-200 flex flex-col gap-8">
+    <div className="p-5 sm:px-8 sm:py-6 bg-grey-800 text-grey-200 flex flex-col gap-8">
       <CharacterContextProvider>
         <LengthContextProvider>
           <Length />
