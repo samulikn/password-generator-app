@@ -22,7 +22,7 @@ function CharacterItem({ id }: CharacterItemType): ReactElement {
   const content: ReactElement | ReactElement[] = !item ? (
     <></>
   ) : (
-    <div className="text-base/5 flex gap-4 sm:text-lg/6">
+    <div className="text-base/5 flex gap-4 sm:text-lg/6 sm:gap-6">
       <input
         id={itemId}
         type="checkbox"
