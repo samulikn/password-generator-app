@@ -13,7 +13,7 @@ const TotalStrength = () => {
     .filter((c) => c.isIncluded)
     .reduce((sum, curr) => sum + curr.chars.length, 0);
 
-  let rectangles: number = characters.length;
+  let rectangles: number = 4;
   let filledRectangles: number = 0;
   let passwordStrength: string = "";
   let bgRectangle: string = "";
@@ -27,7 +27,11 @@ const TotalStrength = () => {
 
   const entropy = calculateEntropy(length, charSize);
 
-  if (entropy < 28) {
+  if (entropy === 0) {
+    filledRectangles = 0;
+    passwordStrength = "";
+    bgRectangle = "border-grey-200";;
+  } else if (entropy < 28) {
     filledRectangles = 1;
     passwordStrength = "TOO WEAK!";
     bgRectangle = "tooweak";
@@ -61,7 +65,7 @@ const TotalStrength = () => {
 
   return (
     <div>
-      <div className="p-4 sm:px-8 bg-grey-850 flex items-center">
+      <div className="p-4 sm:px-8 bg-grey-850 flex items-center min-h-16 sm:min-h-18">
         <p className="text-base/5 text-grey-600 sm:text-lg">STRENGTH</p>
         <span className="ml-auto mr-4 text-lg/6 sm:text-2xl sm:pl-4">
           {passwordStrength}
